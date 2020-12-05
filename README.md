@@ -1,7 +1,7 @@
 # MovieSearch
 ### Movie search app
 
-MovieSearch is a React app that pulls data from [themoviedb.org](themoviedb.org). You can search movies by the title of the movie. A card will appear with an option to show more details. In the expanded card view, users are allowed to cast votes for a movie. [Demo video can be viewed here](https://www.youtube.com/watch?v=n0uABgPU4XY). 
+MovieSearch is a React app that pulls data from [themoviedb.org](themoviedb.org). You can search movies by the title of the movie. A card will appear with an option to show more details. In the expanded card view, users are allowed to cast votes for a movie. The app is supported by a Ruby on Rails API which can be found [here](https://github.com/dannyflatiron/movie-search-api). [Demo video can be viewed here](https://youtu.be/wVEKy7tVmC0). 
 
 ---
 ![MovieSearch Home](https://github.com/dannyflatiron/movie-search/blob/main/public/movie_search_home.png?raw=true)
