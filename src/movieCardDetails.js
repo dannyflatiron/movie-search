@@ -1,10 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { upVote, downVote } from './actions/movies/createMovie.js'
 
-export default function MovieCardDetails({movie}){
+export default function MovieCardDetails({movie, upvote, downvote}){
+  const [upVotes, setupVotes] = useState('')
+  const [downVotes, setdownVotes] = useState('')
 
-  const [upVoteCount, setUpVoteCount] = useState('0')
-  const [downVoteCount, setDownVoteCount] = useState('0')
+  useEffect(() => {
+    setupVotes(upvote)
+    setdownVotes(downvote)
+  }, [upvote, downvote])
 
   const handleUpVote = async (event) => {
     event.preventDefault()
@@ -26,16 +30,12 @@ export default function MovieCardDetails({movie}){
     .then(response => response.json())
     .then(result => {
       let selectedMovie = result.data.map(data => data.attributes).find(m => m.title === movie.Title)
-      if (selectedMovie.upvote === '') {
-        return null 
-      } else {
-        setUpVoteCount(selectedMovie.upvote)
-      } 
+      if (selectedMovie.upvote) {
+        setupVotes(selectedMovie.upvote)
+      }
 
-      if (selectedMovie.downvote === '' ) {
-        return null 
-      } else {
-        setDownVoteCount(selectedMovie.downvote)
+      if (selectedMovie.downvote) {
+        setdownVotes(selectedMovie.downvote)
       } 
     })
   }
@@ -50,11 +50,11 @@ export default function MovieCardDetails({movie}){
         <form onSubmit={handleUpVote}>
           <input type="submit" value="Click here to upvote"></input>
         </form>
-        <p>Total upvotes: {upVoteCount}</p>
+        <p>Total upvotes: {upVotes}</p>
         <form onSubmit={handleDownVote}>
-          <input type="submit" value="Click here to down"></input>
+          <input type="submit" value="Click here to downvote"></input>
         </form>
-        <p>Total downvotes: {downVoteCount}</p>
+        <p>Total downvotes: {downVotes}</p>
       </div>
     )
 }
